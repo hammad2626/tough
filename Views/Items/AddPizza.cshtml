@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = "~/Views/Shared/ItemsLayout.cshtml";
+}
+@model Pizza_Hut.Models.Item
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="~/Content/boot-business.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<title>Free Spicy-Foods Website Template | Home :: w3layouts</title>
+<link href="~/content/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+<!--slider-->
+<link rel="stylesheet" href="~/content/flexslider.css" type="text/css" media="all" />
+<script src="~/Script/modernizr.js"></script>
+<!-- jQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="~/Script/libs/jquery-1.7.min.js">\x3C/script>')</script>
+  <!-- FlexSlider -->
+  <script defer src="~/Script/jquery.flexslider.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+<div class="wrap"> 
+	<div class="total">	
+		
+         <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i> Add New Pizza to Spicy Pizza Hut</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup" action="/Items/AddPizza1" method="post" enctype="multipart/form-data">
+                    @Html.TextBoxFor(m => m.PizzaName, new {placeholder="Pizza Name" })
+                    @Html.TextBoxFor(m => m.PizzaPrice, new {placeholder="Pizza Price" })
+                  <!--
+                  <input type="text" name="name_of_pizza" placeholder="Pizza Name">
+                  <input type="text" name="price_of_pizza" placeholder="Pizza Price">
+                      -->
+                  
+                    
+                    <input type="file" name="image" class="btn btn-primary btn-large"/> 
+                    <input type="submit" value="Upload Image" class="btn btn-primary btn-large">
+
+                    
+                    
+                  <div>
+                    <input type="submit" value="Add Pizza" class="btn btn-primary btn-large">
+                  </div>                  
+                </form>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+    <!-- End: MAIN CONTENT -->
+        </div>
+    </div>
+
+</body>
+    </html>

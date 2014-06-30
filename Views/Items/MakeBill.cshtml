@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "MakeBill";
+}
+@{
+    int total = 0;
+
+}
+@model List<Pizza_Hut.Models.Item>
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#t1.tr").empty();
+    });
+
+    </script>
+
+<div class="wrap">
+    <div class="total">
+
+        <!-- Start: MAIN CONTENT -->
+      <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Total Bill</h1>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-lock"></i>Total Bill</h4>
+            <div class="widget-body">
+              <div class="center-align">
+
+                  <font color="Blue">
+        <table id="t1" border="1">
+            <tr>
+                <td>Pizza Name</td>
+                <td>Pizza Price</td>
+            </tr>
+        
+
+        @foreach (var a in @Model)
+        {
+             <tr>
+                 <td>@a.PizzaName</td>
+                 <td>@a.PizzaPrice</td>
+             </tr>
+            total = (int)total + (int)a.PizzaPrice;
+
+        }
+        </table>
+        <form action="/Revenue/SaveOrder" method="post">
+
+        <div>
+            <label>Total Bill=@total</label>
+            <input type="hidden" name="TotalBill" value="@total">
+        </div>
+            <div>
+              <input type="text" placeholder="Enter your Address" name="Address">
+             </div>
+             <div>
+                    <input type="submit" value="Confirm Order" class="btn btn-primary btn-large">
+                 </form>
+              </div>
+
+
+            </div>
+                      </font>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>        
+    </div>
+</div>
+

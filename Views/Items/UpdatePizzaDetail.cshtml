@@ -1,0 +1,70 @@
+﻿@{
+    Layout = "~/Views/Shared/ItemsLayout.cshtml";
+}
+@model Pizza_Hut.Models.Item
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#pizzaSelector").change(function () {
+            var pizzaId = $("#pizzaSelector").val();
+
+            $.getJSON("/Items/dataOfPizza?pizzaId=" + pizzaId, function (data) {
+
+                $("#PizzaName").val(data.PizzaName)
+                $("#PizzaPrice").val(data.PizzaPrice)
+                $("#Id").val(data.Id)
+
+
+
+            });
+
+        });
+
+
+    });
+
+    $.getJSON("/Items/allData", function (data) {
+        $.each(data,function(i,item){
+            $("#pizzaSelector").append('<option value='+item.Id+'>' + item.PizzaName + '</option>');
+        });
+    })
+
+
+    </script>
+
+<body>
+<div class="wrap"> 
+	<div class="total">
+<!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i>Update Pizza Details</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup" action="/Items/Update" method="post">
+                    <select id="pizzaSelector">
+                        <option value="0">-Select Pizza-</option>                                   
+                   </select>
+                    @Html.Label("Pizza Name")
+                  <input type="text" name="PizzaName" id="PizzaName" placeholder="Pizza Name">
+                    @Html.Label("Pizza Price")
+                  <input type="text" name="PizzaPrice" id="PizzaPrice" placeholder="Pizza Price">
+                    
+                    <input type="hidden" name="Id" id="Id">
+                  <div>
+                    <input type="submit" value="Update Pizza" class="btn btn-primary btn-large">
+                  </div>
+                </form>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</body>

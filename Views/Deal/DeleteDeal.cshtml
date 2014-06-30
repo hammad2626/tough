@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/DealLayout.cshtml";
+}
+
+<body>
+<div class="wrap"> 
+	<div class="total">
+<!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i>Remove Package</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup" action="/Deal/Delete" method="post">
+                  <input type="text" name="PackageName" placeholder="Package Name">                  
+                  <div>
+                    <input type="submit" value="Delete Package" class="btn btn-primary btn-large">
+                  </div>
+                </form>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </body>

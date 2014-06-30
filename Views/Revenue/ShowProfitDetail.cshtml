@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/RevenueLayout.cshtml";
+    int total = 0;
+}
+@model List<Pizza_Hut.Models.Revenue>
+<div class="wrap">
+    <div class="total">
+
+        <!-- Start: MAIN CONTENT -->
+      <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Total Revenue</h1>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-lock"></i>Total Revenue</h4>
+            <div class="widget-body">
+              <div class="center-align">
+
+                  <font color="Blue">
+        <table id="t1" border="1">
+            <tr>
+                <td>Id</td>                
+                <td>Total Bill</td>
+                <td>Date</td>
+                <td>Address</td>
+            </tr>
+            @foreach (var a in @Model)
+            {
+                 <tr>
+                     <td>@a.Id</td>
+                     <td>@a.TotalBill</td>
+                     <td>@a.Data</td>
+                     <td>@a.Address</td>
+                 </tr>
+                total = (int)total + (int)a.TotalBill;
+            }
+        
+            
+            </table>
+                      <div>
+                <label>Total Revenue so far=@total</label>
+            </div>
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+    </div>

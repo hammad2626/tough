@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+@model Pizza_Hut.Models.Admin
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript">
+
+    function f1()
+    {
+        var flag = true;
+        var UName = $("#UserName").val();
+        var Password = $("#Password").val();
+
+        if (UName.length == 0)
+        {
+            document.getElementById('1').innerHTML = "UserName is required.";
+            flag = false;
+        }
+        if (Password.length == 0)
+        {
+            document.getElementById('1').innerHTML = "Password is required.";
+            flag = false;
+        }
+        return flag;
+    }
+
+    </script>
+
+
+<body>
+<div class="wrap"> 
+    <div class="total">
+	
+<!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Signin to Spicy Pizza Hut</h1>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-lock"></i> Signin to Spicy Pizza Hut</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                
+                    @using(Html.BeginForm("CheckForValidUser","Users",FormMethod.Post,new {@class="form-horizontal form-signin-signup"}))
+                 {
+                    @Html.TextBoxFor(m => m.UserName, new {placeholder = "User Name" })
+                        <div>
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                        <span id="1" style="color:red"></span>
+                    @Html.TextBoxFor(m => m.Password, new {placeholder="Password",type="password" })      
+                        <div>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                        <h2>@ViewBag.errorOnLogin</h2>
+                        <span id="2" style="color:red"></span>   
+                                                
+                        <div class="remember-me">
+                            <div class="pull-left">
+                                <label class="checkbox">
+                                    <input type="checkbox">
+                                    Remember me
+                                </label>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#">Forgot password?</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        
+                        
+                        
+                  <input type="submit" value="Signin" class="btn btn-primary btn-large">
+                 }
+                
+                <h4><i class="icon-question-sign"></i> Don't have an account?</h4>
+                <a href="/Home/SignUp" class="btn btn-large bottom-space">Signup</a>
+                <h4><i class="icon-thumbs-up"></i> Sign in with third party account</h4>
+                <ul class="signin-with-list">
+                  <li>
+                    <a class="btn-twitter">
+                      <i class="icon-twitter icon-large"></i>
+                      Signin with Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-facebook">
+                      <i class="icon-facebook icon-large"></i>
+                      Signin with Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-google">
+                      <i class="icon-google-plus icon-large"></i>
+                      Signin with Google
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-github">
+                      <i class="icon-github icon-large"></i>
+                      Signin with Github
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: MAIN CONTENT -->
+    </div>
+    </div>
+    
+</body>
+    </html>

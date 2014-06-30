@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/DealLayout.cshtml";
+}
+@model Pizza_Hut.Models.Deal
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+
+    $(document).ready(function () {        
+
+        $("#packageSelector").change(function () {
+            var packageId = $("#packageSelector").val();
+
+            $.getJSON("/Deal/SpecificData?id=" + packageId, function (data) {
+                
+                $("#NoOfPizza").val(data.NoOfPizza)
+                $("#NoOfCoke").val(data.NoOfCoke)
+                $("#Id").val(data.Id)
+                
+
+                
+            });
+        });
+
+
+        
+            $.getJSON("/Deal/data", function (data) {
+                $.each(data, function (i, item) {
+                    $("#packageSelector").append('<option value='+item.Id+'>' + item.PackageName + '</option>');
+                });
+            })
+        
+    });
+    </script>
+
+<body>
+<div class="wrap"> 
+	<div class="total">	
+         <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i>Update A Package In Spicy Pizza Hut</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup" action="/Deal/Update" method="post">
+                  
+                  <select id="packageSelector">
+                        <option value="0">-Select Package-</option>                                   
+                   </select>
+                    @Html.Label("No Of Coke(s)")
+                  <input type="text" name="NoOfCoke" id="NoOfCoke"" placeholder="Number of Coke(s)">
+                    @Html.Label("No Of Pizza(s)")
+                  <input type="text" name="NoOfPizza" id="NoOfPizza" placeholder="Number of Pizza(s)">                   
+                  
+                  <input type="hidden" name="Id" id="Id">
+                  <div>
+                    <input type="submit" value="Change Package" class="btn btn-primary btn-large">
+                  </div>                  
+                </form>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+    <!-- End: MAIN CONTENT -->
+        </div>
+    </div>
+
+</body>
+
+

@@ -1,0 +1,211 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+}
+@model Pizza_Hut.Models.User
+
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#result').hide();
+            $('#checking').hide();
+
+            $('#b1').click(function () {
+                document.getElementById('1').innerHTML = "";
+                $('#result').hide();
+                $('#checking').hide();
+
+                var userName = $('#UserName').val();
+
+                if (userName.length != 0) {
+
+                    //alert('User Name ='+ userName);
+                    $('#checking').show();
+                    $.getJSON("/Users/CheckUserName?UserName=" + userName, function (data) {
+                        $('#checking').hide();
+                        //alert(data);
+                        if (data) {
+                            $('#result').show();
+                            $('#result').text("User already exists in database");
+
+                        }
+                        else {
+                            $('#result').show();
+                            $('#result').text("User Name is available");
+                        }
+                    });
+                }
+                else {
+                    document.getElementById('1').innerHTML = "Must Enter Username.";
+                }
+
+            });
+
+        });
+    </script>
+
+<div class="wrap"> 
+	<div class="total">
+     <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Signup to Spicy Pizza Hut</h1>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i> Be a part of Spicy Pizza Hut</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                  @using (Html.BeginForm("makeAccount","Users",FormMethod.Post,new {@class="form-horizontal form-signin-signup"}))
+                  { 
+                  
+               
+                    
+                    @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name", required = "required" })
+                      <div>
+                            @Html.ValidationMessageFor(m => m.FirstName)
+                        </div>
+                    @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name", required = "required" })
+                      <div>
+                            @Html.ValidationMessageFor(m => m.LastName)
+                        </div>
+                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "UserName", required = "required" })
+                      <div>
+                          <span id="1" style="color: red"></span>
+                      </div>
+                    <!--
+                  <input type="text" required="required" name="FirstName" placeholder="First Name" >
+                  <input type="text" name="LastName" placeholder="Last Name" required="required">
+                  <input type="text" id="UserName" name="UserName" placeholder="UserName" required="required">
+                        -->
+                  <div id="checking">
+                      Checking...
+                  </div> 
+
+                  <div id="result"></div> 
+
+                  <div>
+                    <input type="button" value="Check Username" id="b1" class="btn btn-primary btn-large">
+                  </div>
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", required = "required" })
+                      <div>
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", required = "required", type = "password" })
+                      <div>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password Confirmation", required = "required", type = "password" })
+                      <div>
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    <!--
+                  <input type="text" name="Email" placeholder="Email" required="required">
+                  <input type="password" name="Password" placeholder="Password" required="required">
+                  <input type="password" name="password_confirmation" placeholder="Password Confirmation" required="required">
+                        -->
+                  <div>
+                    <input type="submit" value="Signup" class="btn btn-primary btn-large">
+                  </div>
+                
+                  }
+                <h4><i class="icon-question-sign"></i> Already have an account?</h4>
+                <a href="/Home/Login" class="btn btn-large bottom-space">Signin</a>
+                <h4><i class="icon-thumbs-up"></i> Sign in with third party account</h4>
+                <ul class="signin-with-list">
+                  <li>
+                    <a class="btn-twitter">
+                      <i class="icon-twitter icon-large"></i>
+                      Signin with Twitter
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-facebook">
+                      <i class="icon-facebook icon-large"></i>
+                      Signin with Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-google">
+                      <i class="icon-google-plus icon-large"></i>
+                      Signin with Google
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-github">
+                      <i class="icon-github icon-large"></i>
+                      Signin with Github
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: MAIN CONTENT -->
+
+    <!--
+        <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 well well-sm">
+            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
+            <form action="#" method="post" class="form" role="form">
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="firstname" placeholder="First Name" type="text"
+                        required autofocus />
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <input class="form-control" name="lastname" placeholder="Last Name" type="text" required />
+                </div>
+            </div>
+            <input class="form-control" name="youremail" placeholder="Your Email" type="email" />
+            <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email" />
+            <input class="form-control" name="password" placeholder="New Password" type="password" />
+            <label for="">
+                Birth Date</label>
+            <div class="row">
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Month">Month</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Day">Day</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-md-4">
+                    <select class="form-control">
+                        <option value="Year">Year</option>
+                    </select>
+                </div>
+            </div>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
+                Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="sex" id="inlineCheckbox2" value="female" />
+                Female
+            </label>
+            <br />
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Sign up</button>
+            </form>
+        </div>
+    </div>
+</div>
+        -->
+    </div>
+    </div>
+
+
+    
+

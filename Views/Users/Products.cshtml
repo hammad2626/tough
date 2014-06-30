@@ -1,0 +1,94 @@
+﻿<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+@model List<Pizza_Hut.Models.Item>
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    function f1(id)
+    {
+        alert("Yes");
+        $("#")
+    }
+    </script>
+
+<title>Free Spicy-Foods Website Template | Products :: w3layouts</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+
+<div class="wrap"> 
+	<div class="total">
+		
+		<div class="main">
+   		  <div class="prod">
+                 
+                 @foreach (var a in Model)
+                 {                     
+                     <div class="col_1_of_3 span_1_of_3">
+                         <div class="view effect">
+                             <img src="~/Files/@a.ImagePath">
+                             <!--<img src="~/Images/pic9.jpg" alt="" />-->
+                             <div class="mask"></div>
+                             <div class="content">
+                                 <a href="#" class="info" title="Full Image">Full Image</a>
+                             </div>
+                         </div>
+                         <div>
+                             <a href="/Items/saveItems?id=@a.Id" class="btn btn-primary btn-large">Add To Cart</a>
+                             
+                             
+                         </div>
+                         
+
+                         <h3>@a.PizzaName</h3>
+                         <h3>@a.PizzaPrice</h3>                         
+                     </div>
+                     
+                     
+                 }
+
+				<div class="col_1_of_3 span_1_of_3">
+					<div class="view effect">
+					<img src="~/Images/pic9.jpg" alt=""/>
+				         <div class="mask"></div>
+				         <div class="content">
+				         	<a href="#" class="info" title="Full Image">Full Image</a>
+				         </div>
+					</div>
+                    <div>
+                    <input type="submit" value="Add To Cart" class="btn btn-primary btn-large">
+                  </div>
+					<h3>Lorem Ipsum is simply</h3>					
+				</div>
+				
+				
+				<div class="clear"></div> 
+			</div>  			
+		</div>
+
+        <form action="/Items/MakeBill" method="post">
+            <div>
+                <input type="submit" value="Check Out" class="btn btn-primary btn-large">
+            </div>
+        </form>
+
+	</div>
+</div>
+<div class="footer-bottom">
+ 	<div class="wrap">
+ 		<div class="copy">
+			<p> © 2013 All rights Reserved | Design by <a href="http://w3layouts.com">W3Layouts</a></p>
+		</div>
+ 	</div>
+ </div>
+</body>
+</html>
+
+    	
+    	
+            

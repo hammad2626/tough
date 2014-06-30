@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "DeletePizza";
+    Layout = "~/Views/Shared/ItemsLayout.cshtml";
+}
+@model Pizza_Hut.Models.Item
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    </script>
+<body>
+<div class="wrap"> 
+	<div class="total">
+<!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i>Remove Pizza</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup" action="/Items/DeletePizza1" method="post">
+                  <input type="text" name="PizzaName" placeholder="Pizza Name" >
+                    <div>
+                            @Html.ValidationMessageFor(m => m.PizzaName)
+                    </div>                  
+                  <div>
+                    <input type="submit" value="Delete Pizza" class="btn btn-primary btn-large">
+                  </div>
+                </form>            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </body>

@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "MakeDeal";
+    Layout = "~/Views/Shared/DealLayout.cshtml";
+}
+@model Pizza_Hut.Models.Deal
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    function f1()
+    {
+        alert("Hello");
+        var flag = true;
+        var a = document.form1.PackageName.value;
+        var b = $("#NoOfPizza").val();
+        var c = $("#NoOfCoke").val();
+        
+        if (a.length == 0)
+        {
+            document.getElementById('1').innerHTML = "Package Name.";
+            flag = false;
+        }
+        if (b.length == 0)
+        {
+            document.getElementById('2').innerHTML = "No Of Pizza(s).";
+            flag = false;
+        }
+        if (c.length == 0)
+        {
+            document.getElementById('3').innerHTML = "No Of Coke(s) are required.";
+            flag = false;
+        }
+        return flag;
+    }
+    </script>
+
+<body>
+<div class="wrap"> 
+	<div class="total">	
+         <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">        
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i>Make A Package In Spicy Pizza Hut</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form name="form1" class="form-horizontal form-signin-signup" onsubmit="return f1()" action="/Deal/Add" method="post">
+                  <input type="text" name="PackageName" id="PackageName"  placeholder="Package Name">
+                    <span id="1" style="color:red"></span>
+                  <input type="text" name="NoOfPizza" id="NoOfPizza" placeholder="Number of Pizza(s)">
+                    <span id="2" style="color:red"></span>
+                  <input type="text" name="NoOfCoke" id="NoOfCoke" placeholder="Number of Coke(s)">                   
+                    <span id="3" style="color:red"></span>
+                  <div>
+                    <input type="submit" value="Create A Package" class="btn btn-primary btn-large">
+                  </div>                  
+                </form>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+    <!-- End: MAIN CONTENT -->
+        </div>
+    </div>
+
+</body>
+
+
+
